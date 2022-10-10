@@ -24,8 +24,8 @@ can be found by using AutoCorrelation_Plot.
 
 ## Workflow of our analysis:
 
-1) First we fetch data using api key provided from government site and made a dataframe.
-2) Then did preprocessing over our dataframe till we get our target feature which is ```GDP_in_rs_cr``` and index as 
+1) First we fetch data using api key provided from government site and import all the data into dataframe.
+2) Then did pre-processing over our dataframe till we get our target feature which is ```GDP_in_rs_cr``` and index as 
 ```Financial_year``` as needed.
 3) Using Augmented-Dickey Fuller test checked if our data is stationary or not.
 4) If its not-stationary then we make it stationary by differencing it.
@@ -36,7 +36,7 @@ good enough.
 
 ## Software and tools requirement for end to end implementation:
 
-1) [PyCharm](https://www.jetbrains.com/pycharm/download/#section=windows)
+1) [PyCharmIDE](https://www.jetbrains.com/pycharm/download/#section=windows)
 2) [Heroku](https://www.heroku.com/)
 3) [Docker](https://www.docker.com/)
 4) [GitHub](https://github.com/)
