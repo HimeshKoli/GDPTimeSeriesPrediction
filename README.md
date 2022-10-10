@@ -36,6 +36,7 @@ good enough.
 
 ## Software and tools requirement for end to end implementation:
 
+Python Version = 3.8
 1) [PyCharmIDE](https://www.jetbrains.com/pycharm/download/#section=windows)
 2) [Heroku](https://www.heroku.com/)
 3) [Docker](https://www.docker.com/)
