@@ -11,12 +11,12 @@ def home():
     return render_template('base.html')
 
 
-# line23>> first we made a mistake of "not passing user input in a variable" i.e: here 'year' in variable 'data', and this
+# line24>> first we made a mistake of "not passing user input in a variable" i.e: here 'year' in variable 'data', and this
 # year is reflected in html page name="year" so we can store this user input in data
-# line24>> then we corrected this storing mistake and actually form.get was better suited due to nature of our form in
+# line25>> then we corrected this storing mistake and actually form.get was better suited due to nature of our form in
 # html page to get data, and then we didn't need to give datetime format
-# line26&27>> our output type is series, but we need list, so we converted that into list
-# line28>> so in this list there is our prediction as well as datatype and some as64 word i.e: 7.425678e+06, dtype:series, AS-64
+# line27&28>> our output type is series, but we need list, so we converted that into list
+# line29>> so in this list there is our prediction as well as datatype and some as64 word i.e: 7.425678e+06, dtype:series, AS-64
 # so from this we need only value, so we give [0] and in float format that to limit to 2 decimal so that code
 
 @app.post('/predict')
@@ -26,8 +26,7 @@ def predict():
     output = arima_model.predict(data)
     # print(type(output))
     result = output.tolist()
-    return render_template('base.html', predicted_gdp='The predicted forecast for your year is {}'.format(
-        "{:.2f}".format(float(result[0]))))
+    return render_template('base.html', predicted_gdp='The predicted forecast for your year is {}'.format("{:.2f}".format(float(result[0]))))
 
 
 # this will initiate our code, below block
