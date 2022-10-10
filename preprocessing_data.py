@@ -3,8 +3,9 @@ import pandas as pd
 from fetching_data import gdp_df
 
 
-# line9>> we convert 1951-52 to 1951
-# line10>> then convert 1951 to 1951-01-01 (yyyy-mm-dd)
+# line11>> we convert 1951-52 to 1951
+# line12>> then convert 1951 to proper datetime format 1951-01-01 (yyyy-mm-dd)
+# line15>> set Financial_year as index
 
 def preprocessing(df):
     df['Financial_year'] = df['Financial_year'].apply(lambda x: str(x).split('-')[0])
