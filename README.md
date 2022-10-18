@@ -105,6 +105,7 @@ terminal for pushing this docker image into AWS repository. For further use copy
 **Create Cluster**
 
 Creating cluster is gonna set up an EC2 instance which is going to be our server where we run our application
+
 10) Now in Amazon Container Services click on Clusters to Create Cluster.
 11) EC2 linux + networking (next step) > Cluster name > On-Demand instance > EC2 instance type (t2.micro) > 
 no of instances (1) > VPC (default) > Subnet (default us-east-1b) > Auto assign public IP (enabled) > Security group 
@@ -113,6 +114,7 @@ no of instances (1) > VPC (default) > Subnet (default us-east-1b) > Auto assign 
 **Create Task definition** 
 
 Task definition is basically used to set computation performance metrics of our project
+
 12) Now after Cluster is created click on it and on left panel > Task definitions > Create new Task definition
 13) EC2 (next step) > Task definition name > Task memory & task cpu (512 for both) > Add container
 
