@@ -80,6 +80,7 @@ dockerhub. The commands are as follows:
 AWS for deployment
 
 **Create User**
+
 6) First download AWS CLI and open an account on AWS through link given. Create User to get access key and secret access 
 key which will be required to configure our AWS account with local machine. While creating user your MFA should be 
 disabled, and you should have these policies to be attached to your user:
@@ -96,6 +97,7 @@ disabled, and you should have these policies to be attached to your user:
       Now your AWS is configured with your machine.
 
 **Create Repository**
+
 8) Now head over to your AWS account, search ECS > On left panel click Repositories > Create Repository
 9) Click over repository name and in it click view push commands, now you need to enter these commands 1 by 1 in your IDE 
 terminal for pushing this docker image into AWS repository. For further use copy Image URI.
