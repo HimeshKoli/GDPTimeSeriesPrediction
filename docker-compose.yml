@@ -1,0 +1,16 @@
+# docker compose file was made only to ease our work of pushing images and containers in remote repository of docker hub.
+
+version: "3.8" # docker compose version not to get confused with python version
+
+services:
+  gdptimeseries:
+    container_name: gdptimeseries
+    image: himeshkoli/gdptimeseries
+    ports:
+      - "5000:5000" #(localhost port:container port)
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+
+# docker system prune -a, is a command use to delete all containers, images, running or not from local machine

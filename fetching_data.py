@@ -8,7 +8,7 @@ warnings.filterwarnings('ignore')
 
 # df_main = pd.DataFrame(columns=['Financial_year', 'GDP_in_rs_cr', 'GDP_growth_rate_yoy'])
 
-# we first set up our api call to get data
+# firstly set up api call to get data
 
 def get_data():
     api_key = '579b464db66ec23bdd000001023b005613b940c9705454ff030f9881'

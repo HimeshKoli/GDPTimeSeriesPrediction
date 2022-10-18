@@ -3,6 +3,7 @@ import pickle
 from flask import Flask, render_template, request
 
 app = Flask(__name__)
+port = 5000
 arima_model = pickle.load(open('arima_model.pkl', 'rb'))
 
 
@@ -10,14 +11,13 @@ arima_model = pickle.load(open('arima_model.pkl', 'rb'))
 def home():
     return render_template('base.html')
 
-
-# line24>> first we made a mistake of "not passing user input in a variable" i.e: here 'year' in variable 'data', and this
-# year is reflected in html page name="year" so we can store this user input in data
-# line25>> then we corrected this storing mistake and actually form.get was better suited due to nature of our form in
-# html page to get data, and then we didn't need to give datetime format
-# line27&28>> our output type is series, but we need list, so we converted that into list
-# line29>> so in this list there is our prediction as well as datatype and some as64 word i.e: 7.425678e+06, dtype:series, AS-64
-# so from this we need only value, so we give [0] and in float format that to limit to 2 decimal so that code
+# line24&25>> firstly made a mistake of "not passing user input in a variable" i.e: here 'year' in variable 'data', and this
+# year is reflected in html page name="year" so to store this user input in data and also using request.get_data()which was not suited
+# line25>> then corrected this storing mistake and actually form.get was better suited due to nature of the form in
+# html page to get data, and then further didn't need to give datetime format
+# line27&28>> output type is series, but needed list, so converted that into list
+# line29>> in this list there is prediction as well as datatype and some as64 word i.e: 7.425678e+06, dtype:series, AS-64
+# so from this need only prediction value, so gave [0] and to get value in float format limit to 2 decimal, so that code
 
 @app.post('/predict')
 def predict():
@@ -26,10 +26,10 @@ def predict():
     output = arima_model.predict(data)
     # print(type(output))
     result = output.tolist()
-    return render_template('base.html', predicted_gdp='The predicted forecast for your year is {}'.format("{:.2f}".format(float(result[0]))))
+    return render_template('base.html', predicted_gdp='The predicted GDP forecast for your choice of year is {} Rs'.format("{:.2f}".format(float(result[0]))))
 
 
-# this will initiate our code, below block
+# this below block of code will initiate the entire project
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=port, debug=True)

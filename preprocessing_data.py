@@ -3,7 +3,7 @@ import pandas as pd
 from fetching_data import gdp_df
 
 
-# line11>> we convert 1951-52 to 1951
+# line11>> convert "1951-52" to 1951
 # line12>> then convert 1951 to proper datetime format 1951-01-01 (yyyy-mm-dd)
 # line15>> set Financial_year as index
 

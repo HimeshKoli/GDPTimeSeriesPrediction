@@ -1,0 +1,2 @@
+# virtual env folder to be ignored while creation of docker image
+venv
