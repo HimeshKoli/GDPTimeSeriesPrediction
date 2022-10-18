@@ -70,13 +70,13 @@ Python Version = 3.8
 ## Production stage of model:
 1) A docker account and setup is needed which you can download its package for windows/macOS (link provided).
 2) Create a dockerfile in your IDE to create an image which then need to be pushed on remote repo of dockerhub.
-3) Some problems I encountered regarding sizing of image to check those go to Dockerfile in my GitHub and read solutions.
+3) Some problems I encountered regarding sizing of image, to check those, go to Dockerfile in my GitHub and read commented solutions.
 4) Although its optional but, for ease of access of pushing containerized image to your docker account remote repo, 
 docker-compose.yml file can be created and by executing certain commands related to yml file you can push container to 
 dockerhub. The commands are as follows:
    1) docker compose up --build. (To build image)
    2) docker compose push. (To push image to docker hub)
-5) Now to check whether our docker file is working fine run it at localhost. So now our image is ready to be pushed over 
+5) Now to check whether our docker file is working fine, run it at localhost. So now our image is ready to be pushed over 
 AWS for deployment
 
 **Create User**
