@@ -146,9 +146,10 @@ Solution was to choose this policies:
 3) And some issues in running those pre-made commands to push docker image over AWS ECR repository which was solved by 
 configuring back and forth my AWS with system, explicitly it solved when I added region directly at time of configuration
 
-At first, I used this command because original login command to push image was not working and was not giving me access, 
-by using this command I successfully logged in, but then at time of pushing, this command was throwing a timeout error.
+At first, I used this command:
 (aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin  805992377969.dkr.ecr.us-east-1.amazonaws.com)
+because original login command to push image was not giving me access, 
+by using this command I successfully logged in, but then at time of pushing, this command was throwing a timeout error.
 
 So then I reconfigured AWS and added region and used this command then login was success and it push the image too.
 **Original login command** - (aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/g3c7s0b2)
