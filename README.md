@@ -156,7 +156,7 @@ link (public IPv4 DNS) this is our deployed link
 Add rule > Port range (our host port 5000) > Beside source block in that select 0.0.0.0/0 > Add rule > Port range 
 (our host port 5000) > Beside source block in that select ::/0 > Save rules
 
-##Problems encountered during coding stage
+## Problems encountered during coding stage
 1) Apart from basic errors here and there which were solved relatively quickly by using stack overflow, major 
 troubleshooting I required when using request function to store data in flask file (refer app.py)
 <br>I made a mistake of "not passing user input in a variable" i.e: here 'year' in variable 'data', and this
@@ -174,7 +174,7 @@ able to create image, so gone with `slim-buster`, it created image successfully 
 and total compressed size of the image was ~230mb which is perfectly fine to deploy over AWS.
 <br>Could have also used multi-layer staging to compress size of image more.
 
-##Problems encountered during deployment
+## Problems encountered during deployment
 
 1) My MFA was enabled, so it wasn't giving my machine terminal access to run commands, so I disabled it
 2) For my deployment needs I didn't choose suitable policies, so got this error:
