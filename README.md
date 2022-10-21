@@ -83,9 +83,7 @@ Python Version = 3.8
 
 **Create User**
 
-6) First download AWS CLI and open an account on AWS through link given. Create User to get access key and secret access 
-key which will be required to configure our AWS account with local machine. While creating user your MFA should be 
-disabled, and you should have these policies to be attached to your user:
+6) First download AWS CLI and open an account on AWS through link given. Create User to get access key and secret access key which will be required to configure our AWS account with local machine. While creating user your MFA should be disabled, and you should have these policies to be attached to your user:
    1) AmazonEC2ContainerRegistryFullAccess
    2) AmazonElasticContainerRegistryPublicFullAccess
 7) Now to configure AWS open terminal of our IDE or command prompt type following commands:
