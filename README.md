@@ -7,6 +7,8 @@
 4) Software and tools requirement for end to end implementation
 5) References
 6) Production stage of model (with Docker and AWS configuration)
+7) Problems encountered during coding stage
+8) Problems encountered during deployment stage
 
 
 ## Use case of project:
@@ -89,7 +91,7 @@ Python Version = 3.8
 ## Production stage of model:
 1) A docker account and setup is needed which you can download its package for windows/macOS (link provided).
 2) Create a dockerfile in your IDE to create an image which then need to be pushed on remote repo of dockerhub.
-3) Some problems I encountered regarding sizing of image, to check those, go to Dockerfile in my GitHub and read commented solutions.
+3) Some problems I encountered regarding sizing of image, to check those, see below `Problems encountered during coding stage` 
 4) Although its optional but, for ease of access of pushing containerized image to your docker account remote repo, 
 docker-compose.yml file can be created and by executing certain commands related to yml file you can push container to 
 dockerhub. The commands are as follows:
@@ -154,12 +156,30 @@ link (public IPv4 DNS) this is our deployed link
 Add rule > Port range (our host port 5000) > Beside source block in that select 0.0.0.0/0 > Add rule > Port range 
 (our host port 5000) > Beside source block in that select ::/0 > Save rules
 
-**Problems encountered during deployment**
+##Problems encountered during coding stage
+1) Apart from basic errors here and there which were solved relatively quickly by using stack overflow, major 
+troubleshooting I required when using request function to store data in flask file (refer app.py)
+<br>I made a mistake of "not passing user input in a variable" i.e: here 'year' in variable 'data', and this
+year is reflected in html page name="year" which was also not passed in html, so to store this user input in data and 
+also using request.get_data()which was not suited, then corrected this storing mistake and actually used form.get which 
+was better suited due to nature of the form in html page to get data, and then further didn't need to give datetime format.
+<br><br>
+2) Then next I encountered was docker image related error, the size of the image was huge, it was 2.3gb which could have 
+created problem on deploying it over AWS-ECR as under free tier only 500 mb is allowed.
+<br>So in order to resize it first made a dockerignore file and in it specified venv folder which contains all virtual 
+environment libraries and operating python version which will ignore it completely and won't get included in image file. 
+This brought down the size to 1.29gb.
+<br>Next tried `alpine` based python base image but that had lots of issues with basic libraries such as numpy and was not 
+able to create image, so gone with `slim-buster`, it created image successfully and brought down image size further to 490mb, 
+and total compressed size of the image was ~230mb which is perfectly fine to deploy over AWS.
+<br>Could have also used multi-layer staging to compress size of image more.
 
-1) My MFA was enabled so it wasnt giving my machine terminal access to run commands, so I disabled it
-2) For my deployment needs I didnt choose suitable policies, so got this error:
+##Problems encountered during deployment
+
+1) My MFA was enabled, so it wasn't giving my machine terminal access to run commands, so I disabled it
+2) For my deployment needs I didn't choose suitable policies, so got this error:
 *user is not authorized to perform: ecr-public:GetAuthorizationToken on resource* 
-Solution was to choose this policies:
+Solution was to choose these policies:
    AmazonEC2ContainerRegistryFullAccess
    AmazonElasticContainerRegistryPublicFullAccess
 3) And some issues in running those pre-made commands to push docker image over AWS ECR repository which was solved by 
