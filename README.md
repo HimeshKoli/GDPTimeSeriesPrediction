@@ -12,36 +12,27 @@
 
 
 ## Use case of project:
-The project's use case was to determine what will be India's GDP at a certain year, on the basis of previous year's
-data which was gathered from [data.gov.in](https://data.gov.in/).
+The project's use case was to determine what will be India's GDP at a certain year, on the basis of previous year's data which was gathered from [data.gov.in](https://data.gov.in/).
 
-**NOTE:** This model does not take in consideration, the sudden big spikes which are naturally caused and affects 
-the country's economic structure in a positive or negative way. For eg: COVID-19 outbreak did pretty much damage and 
-caused GDP to dip a certain amount irrelevant of forecasted amount.
+**NOTE:** This model does not take in consideration, the sudden big spikes which are naturally caused and affects the country's economic structure in a positive or negative way. For eg: COVID-19 outbreak did pretty much damage and caused GDP to dip a certain amount irrelevant of forecasted amount.
 
 
 ## Basics of Time-Series Analysis and working of our model:
-Time Series analysis is used when we have to predict or forecast our target values in future with respect to date with 
-the help of previous data. There are basically 4 types of patterns:
+Time Series analysis is used when we have to predict or forecast our target values in future with respect to date with the help of previous data. There are basically 4 types of patterns:
 
 **Trend**
 
-A trend exists when there is a long-term increase or decrease in the data. It does not have to be linear. Sometimes 
-we will refer to a trend as “changing direction”, when it might go from an increasing trend to a decreasing trend.
+A trend exists when there is a long-term increase or decrease in the data. It does not have to be linear. Sometimes we will refer to a trend as “changing direction”, when it might go from an increasing trend to a decreasing trend.
 
 **Seasonal**
 
-A seasonal pattern occurs when a time series is affected by seasonal factors such as the time of the year or the day of 
-the week. Seasonality is always of a fixed and known frequency.
+A seasonal pattern occurs when a time series is affected by seasonal factors such as the time of the year or the day of the week. Seasonality is always of a fixed and known frequency.
 
 **Cyclic**
 
-A cycle occurs when the data exhibit rises and falls that are not of a fixed frequency. These fluctuations are usually 
-due to economic conditions, and are often related to the “business cycle”. The duration of these fluctuations is usually 
-at least 2 years.
+A cycle occurs when the data exhibit rises and falls that are not of a fixed frequency. These fluctuations are usually due to economic conditions, and are often related to the “business cycle”. The duration of these fluctuations is usually at least 2 years.
 
-In this project according to the data we gathered, the pattern recognised was of upward trend, and the requirement for 
-analysis was satisfied by ARIMA model which we got from "statsmodels" package.
+In this project according to the data we gathered, the pattern recognised was of upward trend, and the requirement for analysis was satisfied by ARIMA model which we got from "statsmodels" package.
 
 ARIMA consists of 3 parts:
 
@@ -50,27 +41,20 @@ AR (Auto Regressive) - AR equation goes as follows
 yt = c + ϕ(1)y(t − 1) + ϕ(2)y(t − 2) + ⋯ + ϕ(p)y(t − p) + εt
 ```
 AR basically calculates previous lags.
-So here t-1, t-2, etc. are lags, so how many lags we have to consider for AR that can be found by using 
-PartialAutoCorrelation_Plot.
+So here t-1, t-2, etc. are lags, so how many lags we have to consider for AR that can be found by using PartialAutoCorrelation_Plot.
 
-I (Integration) which is also known as differencing, is used to make data stationary, like when nature is increasing or 
-decreasing trend, it is non-stationary, so differencing eliminates that trend and makes it stationary, although it depends 
-on how many times it needs to be differentiated, max-2, basically we take 'I' at a point where data becomes stationary 
-and to get AR and MA values we put differenced dataframe in acf and pacf plots.
+I (Integration) which is also known as differencing, is used to make data stationary, like when nature is increasing or decreasing trend, it is non-stationary, so differencing eliminates that trend and makes it stationary, although it depends on how many times it needs to be differentiated, max-2, basically we take 'I' at a point where data becomes stationary and to get AR and MA values we put differenced dataframe in acf and pacf plots.
 
-MA (Moving Averages) - MA uses past errors to make future predictions, so how many errors we have to consider for MA that 
-can be found by using AutoCorrelation_Plot.
+MA (Moving Averages) - MA uses past errors to make future predictions, so how many errors we have to consider for MA that can be found by using AutoCorrelation_Plot.
 
 ## Workflow of our analysis:
 
 1) First we fetch data using api key provided from government site and import all the data into dataframe. (fetching_data.py)
-2) Then did pre-processing over our dataframe till we get our target feature which is ```GDP_in_rs_cr``` and index as 
-```Financial_year``` as needed. (preprocessing_data.py)
+2) Then did pre-processing over our dataframe till we get our target feature which is ```GDP_in_rs_cr``` and index as ```Financial_year``` as needed. (preprocessing_data.py)
 3) Using Augmented-Dickey Fuller test checked if our data is stationary or not. (Jupyter notebook for in depth analysis)
 4) If its not-stationary then we make it stationary by differencing it.
 5) Compute AR and MA values using 'I',acf, pacf plots.
-6) After that we test our model and get RMSE score, if gap between target feature's mean and RMSE is huge then model is 
-good enough.
+6) After that we test our model and get RMSE score, if gap between target feature's mean and RMSE is huge then model is good enough.
 7) Now we fit ARIMA on whole dataset and start forecasting for future predictions. (predictions.py)
 
 ## Software and tools requirement for end to end implementation:
@@ -92,13 +76,10 @@ Python Version = 3.8
 1) A docker account and setup is needed which you can download its package for windows/macOS (link provided).
 2) Create a dockerfile in your IDE to create an image which then need to be pushed on remote repo of dockerhub.
 3) Some problems I encountered regarding sizing of image, to check those, see below `Problems encountered during coding stage` 
-4) Although its optional but, for ease of access of pushing containerized image to your docker account remote repo, 
-docker-compose.yml file can be created and by executing certain commands related to yml file you can push container to 
-dockerhub. The commands are as follows:
+4) Although its optional but, for ease of access of pushing containerized image to your docker account remote repo, docker-compose.yml file can be created and by executing certain commands related to yml file you can push container to dockerhub. The commands are as follows:
    1) docker compose up --build. (To build image)
    2) docker compose push. (To push image to docker hub)
-5) Now to check whether our docker file is working fine, run it at localhost. So now our image is ready to be pushed over 
-AWS for deployment
+5) Now to check whether our docker file is working fine, run it at localhost. So now our image is ready to be pushed over AWS for deployment
 
 **Create User**
 
@@ -160,9 +141,9 @@ Add rule > Port range (our host port 5000) > Beside source block in that select 
 1) Apart from basic errors here and there which were solved relatively quickly by using stack overflow, major 
 troubleshooting I required when using request function to store data in flask file (refer app.py)
 <br>I made a mistake of "not passing user input in a variable" i.e: here 'year' in variable 'data', and this
-year is reflected in html page name="year" which was also not passed in html, so to store this user input in data and 
-also using request.get_data()which was not suited, then corrected this storing mistake and actually used form.get which 
-was better suited due to nature of the form in html page to get data, and then further didn't need to give datetime format.
+year is reflected in html page name="year" which was also not passed in html, and function request.get_data()which was also 
+not suited, then corrected this storing mistake and actually used form.get which was better suited due to nature of the form in 
+html page to get data, and then further didn't need to give datetime format.
 <br><br>
 2) Then next I encountered was docker image related error, the size of the image was huge, it was 2.3gb which could have 
 created problem on deploying it over AWS-ECR as under free tier only 500 mb is allowed.
