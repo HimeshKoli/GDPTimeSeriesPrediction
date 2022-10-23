@@ -12,7 +12,7 @@
 
 
 ## Use case of project:
-The project's use case was to determine what will be India's GDP at a certain year, on the basis of previous year's data which was gathered from [data.gov.in](https://data.gov.in/).
+The project's use case was to forecasting India's GDP at a certain year, on the basis of previous year's data which was gathered from [data.gov.in](https://data.gov.in/).
 
 **NOTE:** This model does not take in consideration, the sudden big spikes which are naturally caused and affects the country's economic structure in a positive or negative way. For eg: COVID-19 outbreak did pretty much damage and caused GDP to dip a certain amount irrelevant of forecasted amount.
 
